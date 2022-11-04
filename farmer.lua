@@ -96,7 +96,7 @@ function map_out_perimeter()
 end
 
 
-function return_to_zero_zero()
+function return_to_zero_zero(moving_east)
 	for xPos = 1, math.abs(turtle_position[1]) do
 		if (turtle_position[1] > 0) then
 			turtle.forward()
@@ -106,15 +106,23 @@ function return_to_zero_zero()
 			change_position("n")
 		end
 	end
+
+	if (moving_east == false) then
+		--CURRENT DIRECTION: WEST
+		turtle.turnRight()
+	elseif (moving_east) then
+		--CURRENT DIRECTION: EAST
+		turtle.turnLeft()
+		change_position("e")
+	end
+
 	for yPos = 1, math.abs(turtle_position[2]) do
-		if (turtle_position[2] > 0) then
+		if (moving_east == false) then
 			--CURRENT DIRECTION: WEST
-			turtle.turnRight()
 			turtle.forward()
 			change_position("w")
-		elseif (turtle_position[2] < 0) then
+		elseif (moving_east) then
 			--CURRENT DIRECTION: EAST
-			turtle.turnLeft()
 			turtle.forward()
 			change_position("e")
 		end
