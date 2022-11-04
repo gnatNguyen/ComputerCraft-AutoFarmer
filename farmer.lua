@@ -94,5 +94,9 @@ function map_out_perimeter()
 end
 
 function main()
-	length, width = map_out_perimeter()
+	start = determine_fuel_state()
+	if start then
+		length, width = map_out_perimeter()
 end
+
+main()
