@@ -126,7 +126,27 @@ function return_to_zero_zero(moving_east)
 			change_position("e")
 		end
 	end
+
+	if (moving_east == false) then
+		--CURRENT DIRECTION: NORTH
+		turtle.turnRight()
+	elseif (moving_east) then
+		--CURRENT DIRECTION: NORTH
+		turtle.turnLeft()
+	end
+
 	print("Returned to origin")
+end
+
+
+function dump_inv()
+	for slot = 1, 16 do
+		turtle.select(slot)
+		local item_in_slot = turtle.getItemDetail()
+		if (item_in_slot not nil) then
+			turtle.dropDown(item_in_slot.count)
+		end
+	end
 end
 
 
@@ -212,12 +232,14 @@ end
 
 --main function to load up methods
 function main()
-	start = determine_fuel_state()
-	if start then
-		-- local length, width = map_out_perimeter()
-		local length = 12
-		local width = 14
-		farming_main(length, width)
+	local start = determine_fuel_state()
+	local length, width = map_out_perimeter()
+	while true do
+		start = determine_fuel_state()
+		if start then
+			farming_main(length, width)
+			dump_inv()
+		end
 	end
 end
 
