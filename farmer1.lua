@@ -146,26 +146,24 @@ function farming_main(length, width)
 			break
 		end
 	end
-
+	print(length .. "x" .. width)
 	for row = 1, row <= length do
 		for col = 1, col <= width do
 			local state, data = turtle.inspectDown()
 			if (state == true) then
-				print(data.state.age)
-				print(data.name)
-				-- if (data.state.age ~= nil) then
-				-- 	if (data.state.age == 7) then
-				-- 		local crop_slot = 0
-				-- 		turtle.digDown()
-				-- 		if (data.name == "minecraft:wheat") then
-				-- 			crop_slot = find_item_slot("minecraft:wheat_seeds")
-				-- 		else
-				-- 			crop_slot = find_item_slot(data.name)
-				-- 		end
-				-- 		turtle.select(crop_slot)
-				-- 		turtle.placeDown()
-				-- 	end
-				-- end
+				if (data.state.age ~= nil) then
+					if (data.state.age == 7) then
+						local crop_slot = 0
+						turtle.digDown()
+						if (data.name == "minecraft:wheat") then
+							crop_slot = find_item_slot("minecraft:wheat_seeds")
+						else
+							crop_slot = find_item_slot(data.name)
+						end
+						turtle.select(crop_slot)
+						turtle.placeDown()
+					end
+				end
 			end
 			turtle.forward()
 			change_position("e")
@@ -197,7 +195,7 @@ end
 function main()
 	start = determine_fuel_state()
 	if start then
-		length, width = map_out_perimeter()
+		local length, width = map_out_perimeter()
 		farming_main(length, width)
 		return_to_zero_zero()
 	end
