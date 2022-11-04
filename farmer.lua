@@ -24,6 +24,7 @@ function find_item_slot(item)
 				return slot
 			end
 		end
+	end
 	return nil
 end
 
