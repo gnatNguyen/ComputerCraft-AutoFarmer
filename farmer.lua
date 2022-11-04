@@ -157,8 +157,8 @@ function farming_main(length, width)
 						crop_slot = find_item_slot("minecraft:wheat_seeds")
 					elseif (data.name == "minecraft:potatoes") then
 						crop_slot = find_item_slot("minecraft:potato")
-					else
-						crop_slot = find_item_slot(data.name)
+					elseif (data.name == "minecraft:carrots") then
+						crop_slot = find_item_slot("minecraft:carrot")
 					end
 					turtle.select(crop_slot)
 					turtle.placeDown()
@@ -172,11 +172,15 @@ function farming_main(length, width)
 			turtle.forward()
 			change_position("n")
 			turtle.turnLeft()
+			turtle.forward()
+			change_position("w")
 		elseif (r % 2 == 0 and r ~= length) then
 			turtle.turnRight()
 			turtle.forward()
 			change_position("n")
 			turtle.turnRight()
+			turtle.forward()
+			change_position("e")
 		end
 	end
 
