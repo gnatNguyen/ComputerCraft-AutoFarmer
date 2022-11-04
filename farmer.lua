@@ -21,7 +21,7 @@ function find_item_slot(item)
 		turtle.select(slot)
 		item_in_slot = turtle.getItemDetail()
 		if item_in_slot ~= nil then
-			if string.find(item_in_slot.name, item_name) ~= nil then
+			if string.find(item_in_slot.name, item) ~= nil then
 				return slot
 			end
 		end
