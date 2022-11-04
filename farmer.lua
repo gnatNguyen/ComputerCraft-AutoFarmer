@@ -146,8 +146,15 @@ function farming_main(length, width)
 		end
 	end
 
-	for r = 1, length do
-		for c = 1, width do
+	for r = 1, width do
+		local moving_east = true
+		if (r % 2 == 1) then
+			moving_east = true
+		elseif (r % 2 == 0) then
+			moving_east = false
+		end
+
+		for c = 1, length do
 			local state, data = turtle.inspectDown()
 			if (state == true) then
 				if (data.state.age == 7) then
@@ -169,12 +176,12 @@ function farming_main(length, width)
 				change_position("e")
 			end
 		end
-		if (r % 2 == 1 and r ~= length) then
+		if (moving_east and r ~= length) then
 			turtle.turnLeft()
 			turtle.forward()
 			change_position("n")
 			turtle.turnLeft()
-		elseif (r % 2 == 0 and r ~= length) then
+		elseif (moving_east ~= true and r ~= length) then
 			turtle.turnRight()
 			turtle.forward()
 			change_position("n")
