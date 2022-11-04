@@ -163,6 +163,7 @@ function farming_main(length, width)
 			end
 			turtle.forward()
 			change_position("e")
+		end
 		if (row % 2 == 1 and row ~= length) then
 			turtle.turnLeft()
 			turtle.forward()
