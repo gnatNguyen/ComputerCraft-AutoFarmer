@@ -64,7 +64,7 @@ function map_out_perimeter()
 		elseif (corner == 4) then
 			change_position("s")
 		end
-		state, data = turtle.inspectDown()
+		local state, data = turtle.inspectDown()
 		if (state == false) then
 			turtle.back()
 			if (corner == 1) then
@@ -132,37 +132,41 @@ function farming_main(length, width)
 	change_position("n")
 	turtle.turnLeft()
 	while true do
-		state, data = turtle.inspectDown()
+		local state, data = turtle.inspectDown()
 		if (state == true) then
 			turtle.forward()
 			change_position("w")
 		elseif (state == false) then
 			turtle.back()
+			change_position("e")
 			--CURRENT DIRECTION: NORTH
 			turtle.turnRight()
-			change_position("e")
+			--CURRENT DIRECTION: EAST
+			turtle.turnRight()
 			break
 		end
 	end
 
-	--CURRENT DIRECTION: EAST
-	turtle.turnRight()
 	for row = 1, row <= length do
 		for col = 1, col <= width do
-			state, data = turtle.inspectDown()
-			if (data.state.age == 7) then
-				local crop_slot = 0
-				turtle.digDown()
-				if (data.name == "minecraft:wheat") then
-					crop_slot = find_item_slot("minecraft:wheat_seeds")
-				else
-					crop_slot = find_item_slot(data.name)
+			local state, data = turtle.inspectDown()
+			if (state == true) then
+				if (data.state.age ~= nil) then
+					if (data.state.age == 7) then
+						local crop_slot = 0
+						turtle.digDown()
+						if (data.name == "minecraft:wheat") then
+							crop_slot = find_item_slot("minecraft:wheat_seeds")
+						else
+							crop_slot = find_item_slot(data.name)
+						end
+						turtle.select(crop_slot)
+						turtle.placeDown()
+					end
+					turtle.forward()
+					change_position("e")
 				end
-				turtle.select(crop_slot)
-				turtle.placeDown()
 			end
-			turtle.forward()
-			change_position("e")
 		end
 		if (row % 2 == 1 and row ~= length) then
 			turtle.turnLeft()
