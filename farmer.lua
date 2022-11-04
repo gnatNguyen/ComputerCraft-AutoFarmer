@@ -21,12 +21,11 @@ function find_item_slot(item)
 		turtle.select(slot)
 		item_in_slot = turtle.getItemDetail()
 		if item_in_slot ~= nil then
-			if string.find(item_in_slot.name, item) ~= nil then
+			if string.find(item_in_slot.name, item) == 1 then
 				return slot
 			end
 		end
 	end
-	return nil
 end
 
 --determines if turtle has an satisfactory amount of fuel before it can run
@@ -151,18 +150,16 @@ function farming_main(length, width)
 		for c = 1, width do
 			local state, data = turtle.inspectDown()
 			if (state == true) then
-				if (data.state.age ~= nil) then
-					if (data.state.age == 7) then
-						local crop_slot = 0
-						turtle.digDown()
-						if (data.name == "minecraft:wheat") then
-							crop_slot = find_item_slot("minecraft:wheat_seeds")
-						else
-							crop_slot = find_item_slot(data.name)
-						end
-						turtle.select(crop_slot)
-						turtle.placeDown()
+				if (data.state.age == 7) then
+					local crop_slot = 0
+					turtle.digDown()
+					if (data.name == "minecraft:wheat") then
+						crop_slot = find_item_slot("minecraft:wheat_seeds")
+					else
+						crop_slot = find_item_slot(data.name)
 					end
+					turtle.select(crop_slot)
+					turtle.placeDown()
 				end
 			end
 			turtle.forward()
