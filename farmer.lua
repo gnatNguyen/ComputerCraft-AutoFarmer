@@ -83,6 +83,9 @@ function map_out_perimeter()
 		turtle.foward()
 		change_position("w")
 	end
+	turtle.turnRight()
+	turtle.back()
+	change_position("s")
 	print("Length: " .. length)
 	print("Width: " .. width)
 	return length, width
