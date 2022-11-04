@@ -142,6 +142,7 @@ function farming_main(length, width)
 			change_position("e")
 			break
 		end
+	end
 
 	--CURRENT DIRECTION: EAST
 	turtle.turnRight()
@@ -172,6 +173,7 @@ function farming_main(length, width)
 			change_position("n")
 			turtle.turnRight()
 		end
+	end
 
 	if (length % 2 == 0) then
 		--CURRENT DIRECTION: SOUTH
@@ -179,6 +181,7 @@ function farming_main(length, width)
 	elseif (length % 2 == 1) then
 		--CURRENT DIRECTION: SOUTH
 		turtle.turnLeft()
+	end
 end
 
 
