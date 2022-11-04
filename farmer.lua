@@ -147,10 +147,8 @@ function farming_main(length, width)
 		end
 	end
 
-	for row = 1, row <= length do
-		print("checking row")
-		for col = 1, col <= width do
-			print("checking column")
+	for row = 1, row < length+1 do
+		for col = 1, col < width+1 do
 			local state, data = turtle.inspectDown()
 			if (state == true) then
 				if (data.state.age ~= nil) then
@@ -197,7 +195,9 @@ end
 function main()
 	start = determine_fuel_state()
 	if start then
-		local length, width = map_out_perimeter()
+		-- local length, width = map_out_perimeter()
+		local length = 12
+		local width = 14
 		farming_main(length, width)
 		return_to_zero_zero()
 	end
