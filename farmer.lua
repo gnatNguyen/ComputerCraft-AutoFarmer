@@ -98,7 +98,7 @@ end
 
 
 function return_to_zero_zero()
-	for xPos = 1, xPos < math.abs(turtle_position[1]) do
+	for xPos = 1, math.abs(turtle_position[1]) do
 		if (turtle_position[1] > 0) then
 			turtle.forward()
 			change_position("s")
@@ -107,7 +107,7 @@ function return_to_zero_zero()
 			change_position("n")
 		end
 	end
-	for yPos = 1, yPos < math.abs(turtle_position[2]) do
+	for yPos = 1, math.abs(turtle_position[2]) do
 		if (turtle_position[2] > 0) then
 			--CURRENT DIRECTION: WEST
 			turtle.turnRight()
@@ -147,8 +147,8 @@ function farming_main(length, width)
 		end
 	end
 
-	for row = 1, row < length+1 do
-		for col = 1, col < width+1 do
+	for r = 1, length do
+		for c = 1, width do
 			local state, data = turtle.inspectDown()
 			if (state == true) then
 				if (data.state.age ~= nil) then
@@ -168,12 +168,12 @@ function farming_main(length, width)
 			turtle.forward()
 			change_position("e")
 		end
-		if (row % 2 == 1 and row ~= length) then
+		if (r % 2 == 1 and r ~= length) then
 			turtle.turnLeft()
 			turtle.forward()
 			change_position("n")
 			turtle.turnLeft()
-		elseif (row % 2 == 0 and row ~= length) then
+		elseif (r % 2 == 0 and r ~= length) then
 			turtle.turnRight()
 			turtle.forward()
 			change_position("n")
