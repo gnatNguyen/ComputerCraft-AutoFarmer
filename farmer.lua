@@ -113,7 +113,6 @@ function return_to_zero_zero(moving_east)
 	elseif (moving_east) then
 		--CURRENT DIRECTION: EAST
 		turtle.turnLeft()
-		change_position("e")
 	end
 
 	for yPos = 1, math.abs(turtle_position[2]) do
@@ -132,6 +131,7 @@ end
 
 
 function farming_main(length, width)
+	local moving_east = true
 	--travels to first corner
 	--will be at bottom left of farm after first while
 	--CURRENT DIRECTION: WEST
@@ -153,9 +153,7 @@ function farming_main(length, width)
 			break
 		end
 	end
-
 	for r = 1, width do
-		local moving_east = true
 		if (r % 2 == 1) then
 			moving_east = true
 		elseif (r % 2 == 0) then
@@ -207,6 +205,8 @@ function farming_main(length, width)
 		--CURRENT DIRECTION: SOUTH
 		turtle.turnRight()
 	end
+
+	return_to_zero_zero(not moving_east)
 end
 
 
@@ -218,7 +218,6 @@ function main()
 		local length = 12
 		local width = 14
 		farming_main(length, width)
-		return_to_zero_zero()
 	end
 end
 
