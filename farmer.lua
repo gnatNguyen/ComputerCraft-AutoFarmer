@@ -17,7 +17,7 @@ end
 
 --returns the slot or nil or an inputted item from inventory
 function find_item_slot(item)
-	for slot = 1, slot < 16 do
+	for slot = 1, 16 do
 		turtle.select(slot)
 		item_in_slot = turtle.getItemDetail()
 		if item_in_slot ~= nil then
