@@ -164,23 +164,21 @@ function farming_main(length, width)
 					turtle.placeDown()
 				end
 			end
-			turtle.forward()
-			change_position("e")
+			if (c ~= width) then
+				turtle.forward()
+				change_position("e")
+			end
 		end
 		if (r % 2 == 1 and r ~= length) then
 			turtle.turnLeft()
 			turtle.forward()
 			change_position("n")
 			turtle.turnLeft()
-			turtle.forward()
-			change_position("w")
 		elseif (r % 2 == 0 and r ~= length) then
 			turtle.turnRight()
 			turtle.forward()
 			change_position("n")
 			turtle.turnRight()
-			turtle.forward()
-			change_position("e")
 		end
 	end
 
