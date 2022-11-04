@@ -155,6 +155,8 @@ function farming_main(length, width)
 					turtle.digDown()
 					if (data.name == "minecraft:wheat") then
 						crop_slot = find_item_slot("minecraft:wheat_seeds")
+					elseif (data.name == "minecraft:potatoes") then
+						crop_slot = find_item_slot("minecraft:potato")
 					else
 						crop_slot = find_item_slot(data.name)
 					end
