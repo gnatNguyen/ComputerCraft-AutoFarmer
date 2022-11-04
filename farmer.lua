@@ -148,7 +148,9 @@ function farming_main(length, width)
 	end
 
 	for row = 1, row <= length do
+		print("checking row")
 		for col = 1, col <= width do
+			print("checking column")
 			local state, data = turtle.inspectDown()
 			if (state == true) then
 				if (data.state.age ~= nil) then
@@ -163,10 +165,10 @@ function farming_main(length, width)
 						turtle.select(crop_slot)
 						turtle.placeDown()
 					end
-					turtle.forward()
-					change_position("e")
 				end
 			end
+			turtle.forward()
+			change_position("e")
 		end
 		if (row % 2 == 1 and row ~= length) then
 			turtle.turnLeft()
@@ -195,7 +197,7 @@ end
 function main()
 	start = determine_fuel_state()
 	if start then
-		length, width = map_out_perimeter()
+		local length, width = map_out_perimeter()
 		farming_main(length, width)
 		return_to_zero_zero()
 	end
