@@ -182,10 +182,10 @@ function farming_main(length, width)
 		end
 	end
 
-	if (length % 2 == 0) then
+	if (r == length and length % 2 == 0) then
 		--CURRENT DIRECTION: SOUTH
 		turtle.turnRight()
-	elseif (length % 2 == 1) then
+	elseif (r == length and length % 2 == 1) then
 		--CURRENT DIRECTION: SOUTH
 		turtle.turnLeft()
 	end
