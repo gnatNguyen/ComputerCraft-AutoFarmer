@@ -105,6 +105,7 @@ function return_to_zero_zero()
 		elseif (turtle_position[1] < 0) then
 			turtle.back()
 			change_position("n")
+		end
 	end
 	for yPos = 1, yPos < math.abs(turtle_position[2]) do
 		if (turtle_position[2] > 0) then
