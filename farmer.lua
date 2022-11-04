@@ -28,6 +28,7 @@ function find_item_slot(item)
 	return nil
 end
 
+
 function determine_fuel_state()
 	local start = true
 	local fuel_amt = turtle.getFuelLevel()
@@ -90,4 +91,8 @@ function map_out_perimeter()
 	print("Length: " .. length)
 	print("Width: " .. width)
 	return length, width
+end
+
+function main()
+	length, width = map_out_perimeter()
 end
