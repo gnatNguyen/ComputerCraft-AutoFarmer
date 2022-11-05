@@ -28,18 +28,26 @@ function find_item_slot(item)
 	end
 end
 
---determines if turtle has an satisfactory amount of fuel before it can run
-function determine_fuel_state()
-	local start = true
-	local fuel_amt = turtle.getFuelLevel()
-	if fuel_amt < 100 then
-		print("This turtle doesn't have enough fuel.")
-		start = false
-		return start
-	end
 
-	print("Fuel Level: " .. fuel_amt)
-	return start
+function pit_stop(length, width)
+	local current_fuel = turtle.getFuelLevel()
+	local area = length * width
+	if current_fuel < area then
+		local amt_coal = math.ceil(((area-current_fuel) + 20)/80)
+		turtle.suckDown()
+		turtle.select(1)
+		local item = turtle.getItemDetail()
+		if (item ~= nil) then
+			if (item.count >= amt_coal) then
+				turtle.refuel(amt_coal)
+				turtle.dropDown()
+			else
+				print("---------OUT OF FUEL----------")
+				turtle.dropDown()
+				os.exit()
+			end
+		end
+	end
 end
 
 --turtle runs around the perimeter of the area to determine length and width
@@ -143,7 +151,7 @@ function dump_inv()
 	for slot = 1, 16 do
 		turtle.select(slot)
 		local item_in_slot = turtle.getItemDetail()
-		if (item_in_slot not nil) then
+		if (item_in_slot ~= nil) then
 			turtle.dropDown(item_in_slot.count)
 		end
 	end
@@ -232,14 +240,14 @@ end
 
 --main function to load up methods
 function main()
-	local start = determine_fuel_state()
+	turtle.suckDown()
+	turtle.refuel(2)
+	turtle.dropDown()
 	local length, width = map_out_perimeter()
 	while true do
-		start = determine_fuel_state()
-		if start then
-			farming_main(length, width)
-			dump_inv()
-		end
+		pit_stop(length, width)
+		farming_main(length, width)
+		dump_inv()
 	end
 end
 
