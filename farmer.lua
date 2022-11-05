@@ -34,7 +34,7 @@ function pit_stop(length, width)
 	local current_fuel = turtle.getFuelLevel()
 	local area = length * width
 	if current_fuel < area then
-		local amt_coal = math.ceil(((area-current_fuel) + 20)/80)
+		local amt_coal = math.ceil(((area-current_fuel) + 200)/80)
 		turtle.select(1)
 		turtle.suckDown()
 		local item = turtle.getItemDetail()
@@ -148,6 +148,7 @@ function return_to_zero_zero(moving_east)
 
 	runs = runs + 1
 	print(runs .. " RUNS COMPLETED")
+	print("FUEL LEVEL: " .. turtle.getFuelLevel())
 
 end
 
