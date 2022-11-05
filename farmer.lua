@@ -1,6 +1,7 @@
 local goldChest = "expandedstorage:gold_chest"
 --position of turtle based on flat plane, so x and y is used, no depth axis.
 local turtle_position = {0,0}
+local runs = 0
 
 --changes the x or y position of the turtle based on direction it travels
 function change_position(direction)
@@ -34,8 +35,8 @@ function pit_stop(length, width)
 	local area = length * width
 	if current_fuel < area then
 		local amt_coal = math.ceil(((area-current_fuel) + 20)/80)
-		turtle.suckDown()
 		turtle.select(1)
+		turtle.suckDown()
 		local item = turtle.getItemDetail()
 		if (item ~= nil) then
 			if (item.count >= amt_coal) then
@@ -143,7 +144,10 @@ function return_to_zero_zero(moving_east)
 		turtle.turnLeft()
 	end
 
-	print("Returned to origin")
+	runs = runs + 1
+	print(runs .. " RUNS COMPLETED")
+	print(turtle_position[1] .. ", " .. turtle_position[2])
+
 end
 
 
