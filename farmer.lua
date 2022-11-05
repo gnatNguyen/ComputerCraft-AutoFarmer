@@ -107,6 +107,7 @@ end
 
 function return_to_zero_zero(moving_east)
 	for xPos = 1, math.abs(turtle_position[1]) do
+		print(turtle_position[1] .. ", " .. turtle_position[2])
 		if (turtle_position[1] > 0) then
 			turtle.forward()
 			change_position("s")
@@ -125,6 +126,7 @@ function return_to_zero_zero(moving_east)
 	end
 
 	for yPos = 1, math.abs(turtle_position[2]) do
+		print(turtle_position[1] .. ", " .. turtle_position[2])
 		if (moving_east == false) then
 			--CURRENT DIRECTION: WEST
 			turtle.forward()
@@ -146,7 +148,6 @@ function return_to_zero_zero(moving_east)
 
 	runs = runs + 1
 	print(runs .. " RUNS COMPLETED")
-	print(turtle_position[1] .. ", " .. turtle_position[2])
 
 end
 
