@@ -144,9 +144,8 @@ function return_to_zero_zero(moving_east)
 	end
 
 	runs = runs + 1
-	print(runs .. " RUNS COMPLETED")
-	print("FUEL LEVEL: " .. turtle.getFuelLevel())
-
+	term.setCursorPos(1,4)
+	print("           -" .. runs .. " RUNS COMPLETED-")
 end
 
 
@@ -249,7 +248,7 @@ function main()
 	local length, width = map_out_perimeter()
 	term.clear()
 	term.setCursorPos(1,1)
-	print("----------FARMING TURTLE----------")
+	print("------------FARMING**TURTLE------------")
 	while true do
 		term.setCursorPos(1,2)
 		pit_stop(length, width)
