@@ -14,6 +14,7 @@ function change_position(direction)
 	elseif (direction == "w") then
 		turtle_position[2] = turtle_position[2] - 1
 	end
+
 end
 
 --returns the slot or nil or an inputted item from inventory
@@ -34,7 +35,7 @@ function pit_stop(length, width)
 	local current_fuel = turtle.getFuelLevel()
 	local area = length * width
 	if current_fuel < area then
-		local amt_coal = math.ceil(((area-current_fuel) + 200)/80)
+		local amt_coal = math.ceil(((area-current_fuel) + 300)/80)
 		turtle.select(1)
 		turtle.suckDown()
 		local item = turtle.getItemDetail()
@@ -99,15 +100,12 @@ function map_out_perimeter()
 	turtle.back()
 	change_position("s")
 	length = length + 1
-	print("Length: " .. length)
-	print("Width: " .. width)
 	return length, width
 end
 
 
 function return_to_zero_zero(moving_east)
 	for xPos = 1, math.abs(turtle_position[1]) do
-		print(turtle_position[1] .. ", " .. turtle_position[2])
 		if (turtle_position[1] > 0) then
 			turtle.forward()
 			change_position("s")
@@ -126,7 +124,6 @@ function return_to_zero_zero(moving_east)
 	end
 
 	for yPos = 1, math.abs(turtle_position[2]) do
-		print(turtle_position[1] .. ", " .. turtle_position[2])
 		if (moving_east == false) then
 			--CURRENT DIRECTION: WEST
 			turtle.forward()
@@ -250,7 +247,11 @@ function main()
 	turtle.refuel(2)
 	turtle.dropDown()
 	local length, width = map_out_perimeter()
+	term.clear()
+	term.setCursorPos(1,1)
+	print("----------FARMING TURTLE----------")
 	while true do
+		term.setCursorPos(1,2)
 		pit_stop(length, width)
 		farming_main(length, width)
 		dump_inv()
