@@ -1,4 +1,4 @@
-# ComputerCraft-AutoFarmer
+# The smart farming turtle
 An automatic farmer for Minecraft using Turtles in ComputerCraft
 
 Automatically finds the length and width the field and uses that to run through iterations.
